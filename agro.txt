@@ -1,0 +1,11 @@
+
+register farmAnimal1 cattle;
+plant corn on 03032023;
+if (1) then
+    vaccinate farmAnimal1 on 04042023;
+else
+    harvest corn;
+
+while (1) begin
+    plant wheat on 05052023;
+end
