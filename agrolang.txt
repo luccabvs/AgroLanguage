@@ -1,0 +1,11 @@
+
+registrar animal1 gado;
+plantar milho em 01/01/2023;
+se (1) entao
+    vacinar animal1 em 02/02/2023;
+senao
+    colher milho;
+
+enquanto (1) comecar
+    plantar trigo em 03/03/2023;
+terminar
