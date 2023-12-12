@@ -1,5 +1,14 @@
 # AgroLanguage
+## A linguagem do agronegócio
 
+### Introdução
+Em um mundo cada vez mais tecnológico, surge a necessidade da agricultura moderna de criar constantes soluções inovadoras e eficientes. É neste cenário que a linguagem de programação AgroLang se destaca, oferecendo uma ferramenta poderosa e adaptada às necessidades específicas do setor agrícola.
+
+### Motivação
+Ser criado no interior do Brasil, me aproximou cada vez mais do Agrnegócio, porém não quero ser apenas mais um fazendeiro comum, meu maior sonho é justamente empreender nesse setor por meio da tecnologia. Isso que me motivou a estudar Engenharia de Computação. Esse projeto é só o primeiro de muitos nesse setor.
+
+
+## EBNF
 ```
 programa = { declaracao ";" }
 
@@ -47,4 +56,18 @@ tipo_animal = "gado" | "ovelha" | "porco" | "galinha"
 
 data = digito, digito, "/", digito, digito, "/", digito, digito, digito, digito
 
+```
+
+## EXEMPLO DE USO
+```
+registrar animal1 gado;
+plantar milho em 01/01/2023;
+se (1) entao
+    vacinar animal1 em 02/02/2023;
+senao
+    colher milho;
+
+enquanto (1) comecar
+    plantar trigo em 03/03/2023;
+terminar
 ```
