@@ -54,50 +54,39 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    NUMBER = 258,                  /* NUMBER  */
-    STRING = 259,                  /* STRING  */
-    IDENTIFIER = 260,              /* IDENTIFIER  */
-    IF = 261,                      /* IF  */
-    THEN = 262,                    /* THEN  */
-    ELSE = 263,                    /* ELSE  */
-    WHILE = 264,                   /* WHILE  */
-    BEGIN_BLOCK = 265,             /* BEGIN_BLOCK  */
-    END_BLOCK = 266,               /* END_BLOCK  */
-    PLUS = 267,                    /* PLUS  */
-    MINUS = 268,                   /* MINUS  */
-    MULTIPLY = 269,                /* MULTIPLY  */
-    DIVIDE = 270,                  /* DIVIDE  */
-    EQUALS = 271,                  /* EQUALS  */
-    SEMICOLON = 272,               /* SEMICOLON  */
-    LPAREN = 273,                  /* LPAREN  */
-    RPAREN = 274,                  /* RPAREN  */
-    PLANT = 275,                   /* PLANT  */
-    HARVEST = 276,                 /* HARVEST  */
-    REGISTER = 277,                /* REGISTER  */
-    VACCINATE = 278,               /* VACCINATE  */
-    CATTLE = 279,                  /* CATTLE  */
-    SHEEP = 280,                   /* SHEEP  */
-    PIG = 281,                     /* PIG  */
-    CHICKEN = 282,                 /* CHICKEN  */
-    ON = 283,                      /* ON  */
-    LOWER_THAN_ELSE = 284          /* LOWER_THAN_ELSE  */
+    NUMERO = 258,                  /* NUMERO  */
+    IDENTIFICADOR = 259,           /* IDENTIFICADOR  */
+    SE = 260,                      /* SE  */
+    ENTAO = 261,                   /* ENTAO  */
+    SENAO = 262,                   /* SENAO  */
+    ENQUANTO = 263,                /* ENQUANTO  */
+    COMECAR = 264,                 /* COMECAR  */
+    TERMINAR = 265,                /* TERMINAR  */
+    MAIS = 266,                    /* MAIS  */
+    MENOS = 267,                   /* MENOS  */
+    MULTIPLICAR = 268,             /* MULTIPLICAR  */
+    DIVIDIR = 269,                 /* DIVIDIR  */
+    IGUAL = 270,                   /* IGUAL  */
+    PONTO_E_VIRGULA = 271,         /* PONTO_E_VIRGULA  */
+    ABRE_PARENTESES = 272,         /* ABRE_PARENTESES  */
+    FECHA_PARENTESES = 273,        /* FECHA_PARENTESES  */
+    PLANTAR = 274,                 /* PLANTAR  */
+    COLHER = 275,                  /* COLHER  */
+    REGISTRAR = 276,               /* REGISTRAR  */
+    VACINAR = 277,                 /* VACINAR  */
+    EM = 278,                      /* EM  */
+    GADO = 279,                    /* GADO  */
+    OVELHA = 280,                  /* OVELHA  */
+    PORCO = 281,                   /* PORCO  */
+    GALINHA = 282,                 /* GALINHA  */
+    MENOR_QUE_SENAO = 283          /* MENOR_QUE_SENAO  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
-#line 10 "parser.y"
-
-    int num;
-    char* id;
-
-#line 98 "parser.tab.h"
-
-};
-typedef union YYSTYPE YYSTYPE;
+typedef int YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

@@ -1,0 +1,11 @@
+
+registrar animal1 gado;
+plantar milho em 01012023;
+se (1) entao
+    vacinar animal1 em 02022023;
+senao
+    colher milho;
+
+enquanto (1) comecar
+    plantar trigo em 03032023;
+terminar

@@ -1,4 +1,3 @@
-
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,97 +6,90 @@ extern int yylineno;
 void yyerror(const char *s);
 %}
 
-%union {
-    int num;
-    char* id;
-}
+%token NUMERO IDENTIFICADOR SE ENTAO SENAO ENQUANTO COMECAR TERMINAR
+%token MAIS MENOS MULTIPLICAR DIVIDIR IGUAL PONTO_E_VIRGULA
+%token ABRE_PARENTESES FECHA_PARENTESES
+%token PLANTAR COLHER REGISTRAR VACINAR EM
+%token GADO OVELHA PORCO GALINHA
 
-%token <num> NUMBER
-%token STRING
-%token <id> IDENTIFIER
-%token IF THEN ELSE WHILE BEGIN_BLOCK END_BLOCK
-%token PLUS MINUS MULTIPLY DIVIDE EQUALS SEMICOLON
-%token LPAREN RPAREN
-%token PLANT HARVEST REGISTER VACCINATE
-%token CATTLE SHEEP PIG CHICKEN ON
-
-%nonassoc LOWER_THAN_ELSE
-%nonassoc ELSE
-
+%nonassoc MENOR_QUE_SENAO
+%nonassoc SENAO
 %%
-program:
-    | program statement SEMICOLON
+programa:
+    | programa declaracao PONTO_E_VIRGULA
     ;
 
-statement:
-      assignment
-    | control_structure
-    | block
-    | crop_operation
-    | livestock_operation
+declaracao:
+      atribuicao
+    | estrutura_controle
+    | bloco
+    | operacao_cultivo
+    | operacao_pecuaria
     ;
 
-assignment:
-    IDENTIFIER EQUALS expression
+atribuicao:
+    IDENTIFICADOR IGUAL expressao
     ;
 
-expression:
-    term
-    | expression PLUS term
-    | expression MINUS term
+expressao:
+    termo
+    | expressao MAIS termo
+    | expressao MENOS termo
     ;
 
-term:
-    factor
-    | term MULTIPLY factor
-    | term DIVIDE factor
+termo:
+    fator
+    | termo MULTIPLICAR fator
+    | termo DIVIDIR fator
     ;
 
-factor:
-    NUMBER
-    | IDENTIFIER
-    | LPAREN expression RPAREN
+fator:
+    NUMERO
+    | IDENTIFICADOR
+    | ABRE_PARENTESES expressao FECHA_PARENTESES
     ;
 
-control_structure:
-      if_structure
-    | while_structure
-    ;
-  
-if_structure:
-    IF LPAREN expression RPAREN THEN statement %prec LOWER_THAN_ELSE
-    | IF LPAREN expression RPAREN THEN statement ELSE statement
+estrutura_controle:
+      estrutura_se
+    | estrutura_enquanto
     ;
 
-while_structure:
-    WHILE LPAREN expression RPAREN statement
+estrutura_se:
+    SE ABRE_PARENTESES expressao FECHA_PARENTESES ENTAO declaracao %prec MENOR_QUE_SENAO
+    | SE ABRE_PARENTESES expressao FECHA_PARENTESES ENTAO declaracao SENAO declaracao
     ;
 
-block:
-    BEGIN_BLOCK program END_BLOCK
+estrutura_enquanto:
+    ENQUANTO ABRE_PARENTESES expressao FECHA_PARENTESES declaracao
     ;
 
-crop_operation:
-      PLANT IDENTIFIER ON NUMBER
-    | HARVEST IDENTIFIER
+bloco:
+    COMECAR programa TERMINAR
     ;
 
-livestock_operation:
-      REGISTER IDENTIFIER CATTLE
-    | REGISTER IDENTIFIER SHEEP
-    | REGISTER IDENTIFIER PIG
-    | REGISTER IDENTIFIER CHICKEN
-    | VACCINATE IDENTIFIER ON NUMBER
+operacao_cultivo:
+      PLANTAR IDENTIFICADOR EM NUMERO
+    | COLHER IDENTIFICADOR
+    ;
+
+operacao_pecuaria:
+      REGISTRAR IDENTIFICADOR tipo_animal
+    | VACINAR IDENTIFICADOR EM NUMERO
+    ;
+
+tipo_animal:
+      GADO
+    | OVELHA
+    | PORCO
+    | GALINHA
     ;
 
 %%
-
 void yyerror(const char *s) {
-    fprintf(stderr, "Error: %s at line %d\n", s, yylineno);
+    fprintf(stderr, "Erro: %s na linha %d\n", s, yylineno);
 }
 
 int main(void) {
     yyparse();
     return 0;
 }
-
