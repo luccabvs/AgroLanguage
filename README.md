@@ -1,49 +1,50 @@
 # AgroLanguage
 
 ```
-program = { statement ";" } 
+programa = { declaracao ";" }
 
-statement = assignment 
-          | control_structure 
-          | block 
-          | crop_operation 
-          | livestock_operation 
+declaracao = atribuicao
+           | estrutura_controle
+           | bloco
+           | operacao_cultivo
+           | operacao_pecuaria
 
-assignment = identifier, "=", expression 
+atribuicao = identificador, "=", expressao
 
-expression = term { ( "+" | "-" ) , term } 
+expressao = termo { ( "+" | "-" ) , termo }
 
-term = factor { ( "*" | "/" ) , factor } 
+termo = fator { ( "*" | "/" ) , fator }
 
-factor = number | identifier | "(", expression, ")" 
+fator = numero | identificador | "(", expressao, ")"
 
-number = digit, { digit } 
+numero = digito, { digito }
 
-digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" 
+digito = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 
-identifier = letter, { letter | digit | "_" } 
+identificador = letra, { letra | digito | "_" }
 
-letter = "A" | "B" | "C" | ... | "Z" | "a" | "b" | "c" | ... | "z" 
+letra = "A" | "B" | "C" | ... | "Z" | "a" | "b" | "c" | ... | "z"
 
-control_structure = if_structure | while_structure 
+estrutura_controle = estrutura_se | estrutura_enquanto
 
-if_structure = "if", "(", expression, ")", "then", statement, [ "else", statement ] 
+estrutura_se = "se", "(", expressao, ")", "entao", declaracao, [ "senao", declaracao ]
 
-while_structure = "while", "(", expression, ")", statement 
+estrutura_enquanto = "enquanto", "(", expressao, ")", declaracao
 
-block = "begin", { statement ";" }, "end" 
+bloco = "comecar", { declaracao ";" }, "terminar"
 
-crop_operation = "plant", crop_identifier, "on", date 
-               | "harvest", crop_identifier 
+operacao_cultivo = "plantar", identificador_cultura, "em", data
+                 | "colher", identificador_cultura
 
-livestock_operation = "register", livestock_identifier, animal_type 
-                    | "vaccinate", livestock_identifier, "on", date 
+operacao_pecuaria = "registrar", identificador_pecuaria, tipo_animal
+                   | "vacinar", identificador_pecuaria, "em", data
 
-crop_identifier = identifier 
+identificador_cultura = identificador
 
-livestock_identifier = identifier 
+identificador_pecuaria = identificador
 
-animal_type = "cattle" | "sheep" | "pig" | "chicken" 
+tipo_animal = "gado" | "ovelha" | "porco" | "galinha"
 
-date = digit, digit, "/", digit, digit, "/", digit, digit, digit, digit 
+data = digito, digito, "/", digito, digito, "/", digito, digito, digito, digito
+
 ```
